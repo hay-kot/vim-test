@@ -171,7 +171,7 @@ function! s:before_run() abort
     let root_markers = get(g:, 'test#root_markers')
     print(root_markers)
 
-    for marker in g:root_markers
+    for marker in root_markers
         let marker_file = findfile(marker, expand('%:p:h') . ';')
         if strlen(marker_file) > 0
             let g:test#project_root = fnamemodify(marker_file, ":p:h")
