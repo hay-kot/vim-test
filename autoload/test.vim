@@ -165,10 +165,12 @@ function! s:alternate_file() abort
   return alternate_file
 endfunction
 
-let g:root_markers = ['package.json', "go.mod"]
 
 function! s:before_run() abort
   if !exists('g:test#project_root')
+    let root_markers = get(g:, 'test#root_markers')
+    print(root_markers)
+
     for marker in g:root_markers
         let marker_file = findfile(marker, expand('%:p:h') . ';')
         if strlen(marker_file) > 0
