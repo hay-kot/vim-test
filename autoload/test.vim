@@ -165,7 +165,24 @@ function! s:alternate_file() abort
   return alternate_file
 endfunction
 
+let g:root_markers = ['package.json', '.git/', "go.mod"]
+
 function! s:before_run() abort
+  if !exists('g:test#project_root')
+    for marker in g:root_markers
+        let marker_file = findfile(marker, expand('%:p:h') . ';')
+        if strlen(marker_file) > 0
+            let g:test#project_root = fnamemodify(marker_file, ":p:h")
+            break
+        endif
+        let marker_dir = finddir(marker, expand('%:p:h') . ';')
+        if strlen(marker_dir) > 0
+            let g:test#project_root = fnamemodify(marker_dir, ":p:h")
+            break
+        endif
+    endfor
+  endif
+
   if &autowrite || &autowriteall
     silent! wall
   endif
