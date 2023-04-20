@@ -165,7 +165,7 @@ function! s:alternate_file() abort
   return alternate_file
 endfunction
 
-let g:root_markers = ['package.json', '.git/', "go.mod"]
+let g:root_markers = ['package.json', "go.mod"]
 
 function! s:before_run() abort
   if !exists('g:test#project_root')
