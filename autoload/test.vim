@@ -169,7 +169,6 @@ endfunction
 function! s:before_run() abort
   if !exists('g:test#project_root')
     let root_markers = get(g:, 'test#root_markers')
-    print(root_markers)
 
     for marker in root_markers
         let marker_file = findfile(marker, expand('%:p:h') . ';')
